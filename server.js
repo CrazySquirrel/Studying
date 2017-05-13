@@ -99,6 +99,6 @@ APP.get("*", (req, res) => {
 /**
  * Get port from environment and store in Express.
  */
-APP.set("port", 3000);
+APP.set("port", 9993);
 
-HTTP.createServer(APP).listen(3000);
+HTTP.createServer(APP).listen(9993);

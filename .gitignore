@@ -1,18 +1,21 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 
 # testing
-/coverage
+coverage
 
 # production
-/build
-/ssl
+build
+ssl
 
 # misc
 .DS_Store
+.idea
 .env
-*.log*
-*.lock*
-/src/json/*.json
+*.log
+*.lock
+*.map
+*.tmp
+src/json/*.json
