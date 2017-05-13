@@ -1,0 +1,184 @@
+.comments__button, .help-button, .page__main form input[type=submit] {
+  -o-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+}
+
+.accordion__button, .comments__button, .help-button, .page__main form input[type=submit] {
+  -moz-transition-duration: .2s;
+  -o-transition-duration: .2s;
+  -webkit-transition-duration: .2s;
+}
+
+article, aside, body code, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+  display: block;
+}
+
+.comments__button, .page__main form input[type=submit] {
+  -moz-transition-property: color, background;
+  -o-transition-property: color, background;
+  -webkit-transition-property: color, background;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+.help-button, .help-button:after, .submenu__item, caption, td, th {
+  vertical-align: middle;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, td, th {
+  text-align: left;
+  font-weight: normal;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+  content: '';
+}
+
+a img {
+  border: none;
+}
+
+@font-face {
+  font-family: 'PTSans';
+  src: url('/fonts/PTSans/pts55f-webfont.eot');
+  src: url('/fonts/PTSans/pts55f-webfont.eot#iefix') format('embedded-opentype'),
+  url('/fonts/PTSans/pts55f-webfont.eot') format('embedded-opentype'),
+  url('/fonts/PTSans/pts55f-webfont.woff2') format('woff2'),
+  url('/fonts/PTSans/pts55f-webfont.woff') format('woff'),
+  url('/fonts/PTSans/pts55f-webfont.ttf') format('truetype'),
+  url('/fonts/PTSans/pts55f-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PTSans';
+  src: url('/fonts/PTSans/pts56f-webfont.eot');
+  src: url('/fonts/PTSans/pts56f-webfont.eot#iefix') format('embedded-opentype'),
+  url('/fonts/PTSans/pts56f-webfont.eot') format('embedded-opentype'),
+  url('/fonts/PTSans/pts56f-webfont.woff2') format('woff2'),
+  url('/fonts/PTSans/pts56f-webfont.woff') format('woff'),
+  url('/fonts/PTSans/pts56f-webfont.ttf') format('truetype'),
+  url('/fonts/PTSans/pts56f-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PTSans';
+  src: url('/fonts/PTSans/pts75f-webfont.eot');
+  src: url('/fonts/PTSans/pts75f-webfont.eot#iefix') format('embedded-opentype'),
+  url('/fonts/PTSans/pts75f-webfont.eot') format('embedded-opentype'),
+  url('/fonts/PTSans/pts75f-webfont.woff2') format('woff2'),
+  url('/fonts/PTSans/pts75f-webfont.woff') format('woff'),
+  url('/fonts/PTSans/pts75f-webfont.ttf') format('truetype'),
+  url('/fonts/PTSans/pts75f-webfont.svg') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PTSans';
+  src: url('/fonts/PTSans/pts76f-webfont.eot');
+  src: url('/fonts/PTSans/pts76f-webfont.eot#iefix') format('embedded-opentype'),
+  url('/fonts/PTSans/pts76f-webfont.eot') format('embedded-opentype'),
+  url('/fonts/PTSans/pts76f-webfont.woff2') format('woff2'),
+  url('/fonts/PTSans/pts76f-webfont.woff') format('woff'),
+  url('/fonts/PTSans/pts76f-webfont.ttf') format('truetype'),
+  url('/fonts/PTSans/pts76f-webfont.svg') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('/fonts/FontAwesome/fontawesome-webfont.eot');
+  src: url('/fonts/FontAwesome/fontawesome-webfont.eot#iefix') format('embedded-opentype'),
+  url('/fonts/FontAwesome/fontawesome-webfont.eot') format('embedded-opentype'),
+  url('/fonts/FontAwesome/fontawesome-webfont.woff2') format('woff2'),
+  url('/fonts/FontAwesome/fontawesome-webfont.woff') format('woff'),
+  url('/fonts/FontAwesome/fontawesome-webfont.ttf') format('truetype'),
+  url('/fonts/FontAwesome/fontawesome-webfont.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  text-size-adjust: none;
+  overflow-scrolling: touch;
+  appearance: none;
+}
+
+body {
+  background: #f5f5f5;
+  font-family: 'PTSans', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+a {
+  text-decoration: none;
+  position: relative;
+  color: #3cb19c;
+  overflow: hidden;
+  transition: color .2s;
+  padding: 0 0 .2em 0;
+}
+
+a::before,
+a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+}
+
+a::before {
+  left: 0;
+  width: 100%;
+  background: #3cb19c;
+}
+
+a::after {
+  left: 50%;
+  width: 0;
+  background: #1b8c76;
+  transition: left .2s, width .2s;
+}
+
+a:hover,
+a[data-active="true"] {
+  color: #1b8c76;
+}
+
+a:hover::after,
+a[data-active="true"]::after {
+  left: 0;
+  width: 100%;
+}
