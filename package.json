@@ -1,7 +1,35 @@
 {
   "name": "Studying",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Simple react project (like TODO) for manage the list of study materials.",
+  "keywords": [
+    "Studying",
+    "courses",
+    "todo",
+    "react"
+  ],
+  "bugs": {
+    "url": "https://github.com/CrazySquirrel/Studying/issues",
+    "email": "info@crazysquirrel.ru"
+  },
+  "license": "MIT",
+  "author": "Sergey Yastrebov <info@crazysquirrel.ru>",
+  "man": "./README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CrazySquirrel/Studying"
+  },
+  "scripts": {
+    "start": "npm run server:stop && react-scripts start",
+    "build": "npm run collect-data && react-scripts build && npm run server:start",
+    "collect-data": "node ./src/js/collect-data/index.js",
+    "server": "npm run server:start",
+    "server:start": "pm2 start server.config.json",
+    "server:stop": "pm2 delete server.config.json",
+    "monit": "pm2 monit",
+    "release": "standard-version && git push origin master --tags",
+    "commit": "git-cz -a"
+  },
   "dependencies": {
     "body-parser": "^1.17.1",
     "chromedriver": "^2.29.0",
@@ -16,19 +44,16 @@
     "spdy": "^3.4.4"
   },
   "devDependencies": {
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
     "eslint": "^3.19.0",
     "react-scripts": "0.9.5",
-    "redux-devtools": "^3.4.0"
+    "redux-devtools": "^3.4.0",
+    "standard-version": "^4.0.0"
   },
-  "scripts": {
-    "start": "npm run server:stop && react-scripts start",
-    "build": "npm run collect-data && react-scripts build && npm run server:start",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "collect-data": "node ./src/js/collect-data/index.js",
-    "server": "npm run server:start",
-    "server:start": "pm2 start server.config.json",
-    "server:stop": "pm2 delete server.config.json",
-    "monit": "pm2 monit"
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }

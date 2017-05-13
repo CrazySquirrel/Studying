@@ -9,11 +9,12 @@ import './css/Item.css';
 
 class Item extends React.Component {
   render() {
-    return (
-        <div
-            data-status={this.props.status}
-            className="item"
-        >
+    if (!this.props.status) {
+      return (
+          <div
+              data-status={this.props.status}
+              className="item"
+          >
           <span
               className="item_status"
               onClick={(e) => {
@@ -22,15 +23,33 @@ class Item extends React.Component {
               }}
           >
           </span>
-          <h2>
-            <a href={this.props.link} target="_blank">
-              {this.props.name}
-            </a>
-          </h2>
-          <Tags tags={this.props.tags}/>
-          <p className="item_description">{this.props.description}</p>
-        </div>
-    );
+            <h2>
+              <a href={this.props.link} target="_blank">
+                {this.props.name}
+              </a>
+            </h2>
+            <Tags tags={this.props.tags}/>
+            <p className="item_description">{this.props.description}</p>
+          </div>
+      );
+    } else {
+      return (
+          <div
+              data-status={this.props.status}
+              className="item"
+          >
+          <span
+              className="item_status"
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.onClick();
+              }}
+          >
+          </span>
+            <h2>{this.props.name}</h2>
+          </div>
+      );
+    }
   }
 }
 

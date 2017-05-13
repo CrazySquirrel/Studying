@@ -1,20 +1,12 @@
-const SERVER_SETTINGS = require("./server.config.json");
-
-process.env.NODE_ENV = SERVER_SETTINGS.apps[0].env.NODE_ENV;
+process.env.NODE_ENV = "production";
 
 const FS = require("fs");
-const SPDY = require("spdy");
+const PATH = require("path");
 const HTTP = require("http");
-const HTTPS = require("https");
 const EXPRESS = require("express");
 const COOKIE_PARSER = require("cookie-parser");
 const BODY_PARSER = require("body-parser");
 const COMPRESSION = require("compression");
-
-const OPTIONS = {
-  key: FS.readFileSync("ssl/key.pem"),
-  cert: FS.readFileSync("ssl/cert.pem")
-};
 
 const MAX_AGE = 1000 * 60 * 60 * 24 * 365;
 
@@ -47,7 +39,7 @@ APP.use(BODY_PARSER.json({
  * Point static path to static
  */
 APP.use(
-    EXPRESS.static(SERVER_SETTINGS.apps[0][process.env.NODE_ENV].STATIC.FILES, {
+    EXPRESS.static(PATH.resolve(__dirname, "./build/static"), {
       etag: true,
       maxAge: MAX_AGE
     })
@@ -56,7 +48,7 @@ APP.use(
  * Point static path to dist
  */
 APP.use(
-    EXPRESS.static(SERVER_SETTINGS.apps[0][process.env.NODE_ENV].STATIC.PAGES, {
+    EXPRESS.static(PATH.resolve(__dirname, "./build"), {
       etag: true,
       maxAge: MAX_AGE
     })
@@ -107,14 +99,6 @@ APP.get("*", (req, res) => {
 /**
  * Get port from environment and store in Express.
  */
-APP.set("port", SERVER_SETTINGS.apps[0][process.env.NODE_ENV].ROOT);
+APP.set("port", 3000);
 
-HTTP.createServer(APP).listen(
-    SERVER_SETTINGS.apps[0][process.env.NODE_ENV].PORTS.HTTP
-);
-HTTPS.createServer(OPTIONS, APP).listen(
-    SERVER_SETTINGS.apps[0][process.env.NODE_ENV].PORTS.HTTPS
-);
-SPDY.createServer(OPTIONS, APP).listen(
-    SERVER_SETTINGS.apps[0][process.env.NODE_ENV].PORTS.HTTP2
-);
+HTTP.createServer(APP).listen(3000);

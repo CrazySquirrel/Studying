@@ -11,22 +11,6 @@
       "exec_mode": "cluster",
       "watch": false,
       "cwd": ".",
-      "env": {
-        "NODE_ENV": "production"
-      },
-      "production": {
-        "NODE_ENV": "production",
-        "ROOT": "/Users/yastrebov-sergey/Documents/Project/Studying/",
-        "STATIC": {
-          "FILES": "/Users/yastrebov-sergey/Documents/Project/Studying/static",
-          "PAGES": "/Users/yastrebov-sergey/Documents/Project/Studying/build"
-        },
-        "PORTS": {
-          "HTTP": "3000",
-          "HTTPS": "3001",
-          "HTTP2": "3002"
-        }
-      },
       "error_file": "err.log",
       "out_file": "out.log",
       "merge_logs": true,

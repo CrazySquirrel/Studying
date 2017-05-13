@@ -57,8 +57,14 @@
   text-decoration: line-through;
 }
 
-.item[data-status="true"] .Status::before {
+.item[data-status="true"] .item_status {
+  top: .4em;
+  left: 1.5em;
+}
+
+.item[data-status="true"] .item_status::before {
   content: "\f00c";
+  font-size: .5em;
 }
 
 .item[data-status="true"]:hover {
