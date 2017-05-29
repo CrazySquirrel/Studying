@@ -1,0 +1,9 @@
+.pagination {
+  margin: 1em 0;
+}
+
+@media print {
+  .pagination {
+    display: none;
+  }
+}

@@ -12,7 +12,12 @@ class List extends React.Component {
       return (
           <div className="list">
             {
-              this.processItems(this.props.items).map((item) => {
+              this.processItems(this.props.items).filter((v, i, a) => {
+                return (
+                    i >= this.props.page * this.props.pageCount &&
+                    i < (this.props.page + 1) * this.props.pageCount
+                );
+              }).map((item) => {
                 return (
                     <Item key={item._key} {...item}/>
                 );
@@ -47,6 +52,8 @@ class List extends React.Component {
 List = connect(
     (state) => {
       return {
+        pageCount: state.pageCount,
+        page: state.page,
         items: state.items
       };
     }

@@ -15,13 +15,15 @@
   "license": "MIT",
   "author": "Sergey Yastrebov <info@crazysquirrel.ru>",
   "man": "./README.md",
+  "homepage": "/study/",
   "repository": {
     "type": "git",
     "url": "https://github.com/CrazySquirrel/Studying"
   },
   "scripts": {
     "start": "npm run server:stop && react-scripts start",
-    "build": "npm run collect-data && react-scripts build && npm run server:start",
+    "build": "npm run collect-data && npm run compile && npm run server:start",
+    "compile": "react-scripts build",
     "collect-data": "node ./src/js/collect-data/index.js",
     "server": "npm run server:start",
     "server:start": "pm2 start server.config.json",

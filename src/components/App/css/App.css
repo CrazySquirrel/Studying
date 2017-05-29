@@ -4,3 +4,13 @@
   margin: 0 auto;
   padding: 0 2em;
 }
+
+@media print {
+  .app {
+    max-width: 100%;
+  }
+
+  .app_stat {
+    display: none;
+  }
+}

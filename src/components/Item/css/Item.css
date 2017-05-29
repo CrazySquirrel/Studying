@@ -70,3 +70,24 @@
 .item[data-status="true"]:hover {
   opacity: 1;
 }
+
+@media print {
+  .item {
+    padding: 0;
+    white-space: nowrap;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+  }
+
+  .item a {
+    font-size: 10px;
+    line-height: 16px;
+    vertical-align: middle;
+  }
+
+  .item_description,
+  .item_status {
+    display: none;
+  }
+}

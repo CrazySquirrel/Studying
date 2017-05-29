@@ -39,6 +39,8 @@ const getState = (state = {}) => {
   }, {});
 
   state = {
+    pageCount: state.pageCount || 50,
+    page: state.page || 0,
     filterStatus: state.filterStatus || '',
     filterTags: state.filterTags || filterTags,
     filterText: state.filterText || '',
@@ -75,12 +77,13 @@ const loadState = () => {
   }
 };
 
-const saveItems = () => {
+const saveItem = (key, item) => {
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "/api/courses", true);
+  xhr.open("POST", "/study/api/courses", true);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhr.send(JSON.stringify({
-    data: _Items
+    key,
+    item
   }));
 };
 
@@ -88,6 +91,8 @@ const Store = createStore((state, action) => {
   switch (action.type) {
     case "FILTER_BY_STATUS":
       return {
+        pageCount: state.pageCount,
+        page: 0,
         filterStatus: action.status,
         filterTags: state.filterTags,
         filterText: state.filterText,
@@ -102,6 +107,8 @@ const Store = createStore((state, action) => {
       filterTags[action.tag] = !filterTags[action.tag];
 
       return {
+        pageCount: state.pageCount,
+        page: 0,
         filterStatus: state.filterStatus,
         filterTags: filterTags,
         filterText: state.filterText,
@@ -113,6 +120,8 @@ const Store = createStore((state, action) => {
       };
     case "FILTER_BY_TEXT":
       return {
+        pageCount: state.pageCount,
+        page: 0,
         filterStatus: state.filterStatus,
         filterTags: state.filterTags,
         filterText: action.text,
@@ -125,9 +134,27 @@ const Store = createStore((state, action) => {
     case "TOGGLE_STATUS":
       _Items[action.key].status = !_Items[action.key].status;
 
-      saveItems();
+      saveItem(
+          action.key,
+          _Items[action.key]
+      );
 
       return {
+        pageCount: state.pageCount,
+        page: 0,
+        filterStatus: state.filterStatus,
+        filterTags: state.filterTags,
+        filterText: state.filterText,
+        items: filter({
+          filterStatus: state.filterStatus,
+          filterTags: state.filterTags,
+          filterText: state.filterText
+        })
+      };
+    case "PAGINATION":
+      return {
+        pageCount: state.pageCount,
+        page: action.page,
         filterStatus: state.filterStatus,
         filterTags: state.filterTags,
         filterText: state.filterText,
@@ -139,6 +166,8 @@ const Store = createStore((state, action) => {
       };
     default:
       return {
+        pageCount: state.pageCount,
+        page: state.page,
         filterStatus: state.filterStatus,
         filterTags: state.filterTags,
         filterText: state.filterText,
@@ -153,7 +182,7 @@ const Store = createStore((state, action) => {
 
 const loadItems = () => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "/api/courses", true);
+  xhr.open("GET", "/study/api/courses", true);
   xhr.onload = () => {
     try {
       _Items = JSON.parse(xhr.responseText);

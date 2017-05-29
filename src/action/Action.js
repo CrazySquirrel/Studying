@@ -25,3 +25,10 @@ export const toggleStatus = (key) => {
     key
   }
 };
+
+export const pagination = (page) => {
+  return {
+    type: 'PAGINATION',
+    page
+  }
+};

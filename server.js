@@ -26,13 +26,13 @@ APP.use(COOKIE_PARSER());
  * Parsers for POST data
  */
 APP.use(BODY_PARSER.urlencoded({
-  limit: "50mb",
+  limit: "500mb",
   extended: true,
   parameterLimit: 50000
 }));
 
 APP.use(BODY_PARSER.json({
-  limit: "50mb"
+  limit: "500mb"
 }));
 
 /**
@@ -61,12 +61,16 @@ APP.post("/api/courses", (req, res) => {
   res.status(200);
 
   try {
-    if (req.body.data) {
-      FS.writeFileSync(
-          "./src/json/all-courses.json",
-          JSON.stringify(req.body.data)
-      );
-    }
+    const items = JSON.parse(
+        FS.readFileSync("./src/json/all-courses.json", "utf-8")
+    );
+
+    items[req.body.key] = req.body.item;
+
+    FS.writeFileSync(
+        "./src/json/all-courses.json",
+        JSON.stringify(items)
+    );
 
     res.send(JSON.stringify({
       status: true

@@ -20,6 +20,7 @@ loadFiles({
   "mail": "./src/json/mail-courses.json",
   "egghead": "./src/json/egghead-courses.json",
   "udacity": "./src/json/udacity-courses.json",
+  "lynda": "./src/json/lynda-courses.json",
   "all": "./src/json/all-courses.json",
 });
 
@@ -48,6 +49,7 @@ Object.keys(jsons).forEach((key) => {
 const udacity = require("./_udacity-get-courses");
 const egghead = require("./_egghead-get-courses");
 const mail = require("./_mail-get-courses");
+const lynda = require("./_lynda-get-courses");
 
 const urls = [
   {
@@ -64,6 +66,11 @@ const urls = [
     key: "mail",
     url: "https://it.mail.ru/video/playlists/",
     processor: mail
+  },
+  {
+    key: "lynda",
+    url: "https://www.lynda.com/subject/all",
+    processor: lynda
   }
 ];
 
@@ -77,17 +84,27 @@ let driver = new webdriver
 .withCapabilities({
   'browserName': 'chrome',
   'chromeOptions': {
+    'args': ['disable-web-security'],
     'binary': '/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary',
-    'extensions': []
+    'extensions': [],
+    'prefs': {
+      'profile.managed_default_content_settings.cookies': 2,
+      'profile.managed_default_content_settings.images': 2,
+      'profile.managed_default_content_settings.plugins': 2,
+      'profile.managed_default_content_settings.popups': 2,
+      'profile.managed_default_content_settings.geolocation': 2,
+      'profile.managed_default_content_settings.notifications': 2,
+      'profile.managed_default_content_settings.media_stream': 2
+    }
   }
 })
 .build();
 
-driver.manage().timeouts().pageLoadTimeout(30000);
-driver.manage().timeouts().setScriptTimeout(10000);
+driver.manage().timeouts().pageLoadTimeout(120000);
+driver.manage().timeouts().setScriptTimeout(120000);
 
 function loadPage(page) {
-  console.log(page.url);
+  console.log("[" + urls.length + "]" + page.url);
   driver.get(page.url)
   .then(() => {
     return driver.getCurrentUrl();
@@ -99,7 +116,9 @@ function loadPage(page) {
     ) {
       driver.executeAsyncScript(page.processor)
       .then((result) => {
-        result.urls.filter(url => links.indexOf(url) === -1).map(url => {
+        result.urls.filter((v, i, a) => {
+          return a.indexOf(v) === i && links.indexOf(v) === -1;
+        }).map((url) => {
           urls.push({
             key: page.key,
             url: url,

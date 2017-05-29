@@ -3,3 +3,9 @@
   font-size: 3em;
   margin: .5em 0 0 0;
 }
+
+@media print {
+  .header {
+    display: none;
+  }
+}
